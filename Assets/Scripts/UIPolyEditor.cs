@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
@@ -21,11 +22,7 @@ namespace UnityEditor.UI
                 g.AddComponent(typeof(UIPoly));
                 Selection.activeGameObject = g;
 
-
-
-                g.GetComponent<UIPoly>().m_Verts.Add(new Vector2(0, 0));
-                g.GetComponent<UIPoly>().m_Verts.Add(new Vector2(1, 0));
-                g.GetComponent<UIPoly>().m_Verts.Add(new Vector2(0, 1));
+                g.GetComponent<UIPoly>().InitPolygon();
             }
             catch
             {
@@ -36,6 +33,7 @@ namespace UnityEditor.UI
         SerializedProperty m_Texture;
         SerializedProperty m_UVRect;
         SerializedProperty m_Verticies;
+        SerializedProperty canEdit;
         GUIContent m_UVRectContent;
 
         protected override void OnEnable()
@@ -48,6 +46,8 @@ namespace UnityEditor.UI
             m_UVRect = serializedObject.FindProperty("m_UVRect");
 
             m_Verticies = serializedObject.FindProperty("m_Verticies");
+
+            canEdit = serializedObject.FindProperty("canEdit");
 
             SetShowNativeSize(true);
         }
@@ -64,9 +64,15 @@ namespace UnityEditor.UI
             EditorGUILayout.PropertyField(m_UVRect, m_UVRectContent);
             SetShowNativeSize(false);
             NativeSizeButtonGUI();
+            EditorGUILayout.PropertyField(canEdit);
             EditorGUILayout.PropertyField(m_Verticies);
 
             serializedObject.ApplyModifiedProperties();
+
+            if (GUILayout.Button("Update Children"))
+            {
+                target.GetComponent<UIPoly>().UpdateChildObject();
+            }
         }
 
         void SetShowNativeSize(bool instant)
@@ -127,11 +133,11 @@ namespace UnityEditor.UI
             {
 
                 Vector3 edit = (Vector3)verts[i];
-                edit = new Vector3(edit.x*maker.transform.lossyScale.x, edit.y * maker.transform.lossyScale.y, 0);
+                edit = new Vector3(edit.x * maker.transform.lossyScale.x, edit.y * maker.transform.lossyScale.y, 0);
                 edit += maker.transform.position;
                 edit = Handles.PositionHandle(edit, Quaternion.identity);
                 edit -= maker.transform.position;
-                edit = new Vector3(edit.x/maker.transform.lossyScale.x, edit.y / maker.transform.lossyScale.y, 0);
+                edit = new Vector3(edit.x / maker.transform.lossyScale.x, edit.y / maker.transform.lossyScale.y, 0);
 
                 verts[i] = edit;
                 Handles.color = Color.blue;

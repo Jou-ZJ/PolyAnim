@@ -11,7 +11,7 @@ namespace UnityEngine.UI.Extensions
         [FormerlySerializedAs("m_Tex")]
         [SerializeField] Texture m_Texture;
         [SerializeField] Rect m_UVRect = new Rect(0f, 0f, 1f, 1f);
-
+        [SerializeField] private bool canEdit = false;
         public override Texture mainTexture
         {
             get
@@ -73,7 +73,7 @@ namespace UnityEngine.UI.Extensions
             }
         }
 
-        [SerializeField] 
+        [SerializeField]
         List<Vector2> m_Verticies = new List<Vector2>();
         public List<Vector2> m_Verts
         {
@@ -216,6 +216,49 @@ namespace UnityEngine.UI.Extensions
             SetMaterialDirty();
             SetVerticesDirty();
             SetRaycastDirty();
+        }
+
+        public void UpdateChildObject()
+        {
+            for (int i = 0, t = m_Verticies.Count; i < t; i++)
+            {
+                RectTransform childRecnTran;
+                if (i < transform.childCount)
+                {
+                    childRecnTran = transform.GetChild(i).GetComponent<RectTransform>();
+                }
+                else
+                {
+                    GameObject child = new GameObject("Child " + i);
+                    child.transform.SetParent(transform, false);
+                    childRecnTran = child.AddComponent<RectTransform>();
+                }
+                childRecnTran.sizeDelta = Vector2.zero;
+                childRecnTran.anchoredPosition = m_Verticies[i];
+            }
+        }
+
+        void Update()
+        {
+            if (Application.isPlaying || !canEdit)
+            {
+                for (int i = 0, t = m_Verticies.Count; i < t; i++)
+                {
+                    RectTransform child = transform.GetChild(i).GetComponent<RectTransform>();
+                    m_Verticies[i] = child.anchoredPosition;
+                }
+                SetVerticesDirty();
+            }
+        }
+
+        public void InitPolygon()
+        {
+            m_Verts.Add(new Vector2(-0.5f, -0.5f));
+            m_Verts.Add(new Vector2(-0.5f, 0.5f));
+            m_Verts.Add(new Vector2(0.5f, 0.5f));
+            m_Verts.Add(new Vector2(0.5f, -0.5f));
+
+            UpdateChildObject();
         }
     }
 }
