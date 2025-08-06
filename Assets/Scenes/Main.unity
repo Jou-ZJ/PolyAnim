@@ -409,7 +409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.2749598, y: -0.5069991}
+  m_AnchoredPosition: {x: -0.5833775, y: -0.56087625}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &689305286
@@ -674,7 +674,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.22558294, y: 0.5066977}
+  m_AnchoredPosition: {x: 0.45035776, y: 0.5167997}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &927747641
@@ -862,7 +862,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -79, y: -88}
   m_SizeDelta: {x: 204, y: 325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1859684764
@@ -892,12 +892,12 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
-  isPreviewInEditor: 0
+  canEdit: 0
   m_Verticies:
-  - {x: -0.48475197, y: -0.5001377}
+  - {x: -0.5833775, y: -0.56087625}
   - {x: -0.5, y: 0.5}
-  - {x: 0.48572347, y: 0.50013185}
-  - {x: 0.49725762, y: -0.49993116}
+  - {x: 0.45035776, y: 0.5167997}
+  - {x: 0.36061874, y: -0.49650043}
   tris:
   - {x: 0, y: 1, z: 2}
   - {x: 0, y: 2, z: 3}
