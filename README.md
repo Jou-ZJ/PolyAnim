@@ -9,4 +9,3 @@
 4. 调整好顶点位置后，点击UpdateChildren将顶点信息存到子节点中
 5. 如果不勾选canEdit，可以在编辑器里的Animation窗口预览动画，但是就不能编辑顶点了
 6. 在编辑动画时，建议先UpdateChildren再Add Key
-### 参考项目
