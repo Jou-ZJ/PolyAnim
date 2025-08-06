@@ -1,5 +1,5 @@
 ## 来源
-魔改了一下[UnityUIPolygon]<https://github.com/SentientDragon5/UnityUIPolygon/tree/main>，使其可以结合Animation使用。
+魔改了一下[UnityUIPolygon](https://github.com/SentientDragon5/UnityUIPolygon/tree/main)，使其可以结合Animation使用。
 ### 原理
 通过将多边形的顶点信息存储到子节点中，然后通过Animation存储子节点信息，运行时将子节点的信息读取出来更新到顶点信息列表中。
 ### 使用方法
